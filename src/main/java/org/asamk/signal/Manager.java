@@ -177,7 +177,7 @@ class Manager implements Signal {
     private static void createPrivateDirectories(String path) throws IOException {
         final Path file = new File(path).toPath();
         try {
-            Set<PosixFilePermission> perms = EnumSet.of(OWNER_READ, OWNER_WRITE, OWNER_EXECUTE);
+            Set<PosixFilePermission> perms = EnumSet.of(OWNER_READ, OWNER_WRITE, OWNER_EXECUTE, GROUP_READ, GROUP_WRITE, GROUP_EXECUTE);
             Files.createDirectories(file, PosixFilePermissions.asFileAttribute(perms));
         } catch (UnsupportedOperationException e) {
             Files.createDirectories(file);
@@ -187,7 +187,7 @@ class Manager implements Signal {
     private static void createPrivateFile(String path) throws IOException {
         final Path file = new File(path).toPath();
         try {
-            Set<PosixFilePermission> perms = EnumSet.of(OWNER_READ, OWNER_WRITE);
+            Set<PosixFilePermission> perms = EnumSet.of(OWNER_READ, OWNER_WRITE, GROUP_READ, GROUP_WRITE);
             Files.createFile(file, PosixFilePermissions.asFileAttribute(perms));
         } catch (UnsupportedOperationException e) {
             Files.createFile(file);
